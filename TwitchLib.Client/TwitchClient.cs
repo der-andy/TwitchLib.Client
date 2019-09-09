@@ -407,6 +407,11 @@ namespace TwitchLib.Client
         /// Fires when data is received from Twitch that is not able to be parsed.
         /// </summary>
         public event EventHandler<OnUnaccountedForArgs> OnUnaccountedFor;
+
+        /// <summary>
+        /// Fires when TwitchClient receives a PING message from Twitch, regardless of the value of <see cref="DisableAutoPong"/>.
+        /// </summary>
+        public event EventHandler OnPingReceived;
         #endregion
 
         #region Construction Work
@@ -946,6 +951,7 @@ namespace TwitchLib.Client
                     HandleNotice(ircMessage);
                     break;
                 case IrcCommand.Ping:
+                    OnPingReceived?.Invoke(this, new EventArgs());
                     if (!DisableAutoPong)
                         SendRaw("PONG");
                     return;
