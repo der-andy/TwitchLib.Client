@@ -14,6 +14,7 @@
         public const string Emotes = "emotes";
         public const string EmoteOnly = "emote-only";
         public const string EmotesSets = "emote-sets";
+        public const string Flags = "flags";
         public const string FollowersOnly = "followers-only";
         public const string Id = "id";
         public const string Login = "login";
@@ -61,5 +62,6 @@
         public const string UserId = "user-id";
         public const string UserType = "user-type";         // Deprecated, use badges instead
         public const string MsgParamMultiMonthGiftDuration = "msg-params-gift-months";            // Sent only on subgift, anonsubgift
+        public const string TargetUserId = "target-user-id";
     }
 }

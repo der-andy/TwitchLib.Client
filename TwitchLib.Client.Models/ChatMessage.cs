@@ -58,14 +58,17 @@ namespace TwitchLib.Client.Models
         /// <summary>Message is from channel VIP</summary>
         public bool IsVip { get; }
 
+        /// <summary>Message is from a Twitch Staff member</summary>
+        public bool IsStaff { get; }
+
+        /// <summary>Message is from a Twitch Partner</summary>
+        public bool IsPartner { get; }
+
         /// <summary>Twitch chat message contents.</summary>
         public string Message { get; }
 
         /// <summary>Experimental property noisy determination by Twitch.</summary>
         public Noisy Noisy { get; }
-
-        /// <summary>Raw IRC-style text received from Twitch.</summary>
-        public string RawIrcMessage { get; }
 
         /// <summary>Unique identifier of chat room.</summary>
         public string RoomId { get; }
@@ -125,6 +128,16 @@ namespace TwitchLib.Client.Models
                                 case "vip":
                                     IsVip = true;
                                     break;
+                                case "admin":
+                                    IsStaff = true;
+                                    break;
+                                case "staff":
+                                    IsStaff = true;
+                                    break;
+                                case "partner":
+                                    IsPartner = true;
+                                    break;
+
                             }
                         }
                         break;
@@ -223,9 +236,11 @@ namespace TwitchLib.Client.Models
                                 break;
                             case "admin":
                                 UserType = UserType.Admin;
+                                IsStaff = true;
                                 break;
                             case "staff":
                                 UserType = UserType.Staff;
+                                IsStaff = true;
                                 break;
                             default:
                                 UserType = UserType.Viewer;
@@ -323,6 +338,9 @@ namespace TwitchLib.Client.Models
             bool isModerator,
             bool isMe,
             bool isBroadcaster,
+            bool isVip,
+            bool isPartner,
+            bool isStaff,
             Noisy noisy,
             string rawIrcMessage,
             string emoteReplacedMessage,
@@ -348,6 +366,9 @@ namespace TwitchLib.Client.Models
             IsModerator = isModerator;
             IsMe = isMe;
             IsBroadcaster = isBroadcaster;
+            IsVip = isVip;
+            IsPartner = isPartner;
+            IsStaff = isStaff; 
             Noisy = noisy;
             RawIrcMessage = rawIrcMessage;
             EmoteReplacedMessage = emoteReplacedMessage;
